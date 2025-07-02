@@ -1,0 +1,80 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go coverage tool
+*.cover
+*.cov
+
+# Output of the go build tool
+*.a
+*.o
+*.h
+*.cgo1.go
+*.cgo2.c
+
+# Test binaries
+*.test
+
+# Fuzz test binaries
+*.fuzz
+
+# Object files and caches
+*.obj
+*.pyc
+
+# Lock files
+go.sum
+
+# Directories for dependencies
+/vendor/
+
+# IDE/editor specific files
+.idea/
+*.iml
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Node modules (if using frontend within the same repo)
+node_modules/
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+
+# Generated documentation files
+*.doc
+*.pdf
+
+# Environment variables file
+.env
+
+# Dependency directories (example)
+vendor/
+
+# IDE specific files
+*.iml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Debug and dump files
+*.dmp
+*.stackdump
+
+# Local development database
+*.sqlite
+*.sqlite3
+
+/wallet_oncodb/
+/.air.toml
+/tmp/

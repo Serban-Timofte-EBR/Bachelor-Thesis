@@ -1,0 +1,78 @@
+services:
+  person_module:
+    build:
+      context: ./Person_Module
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./Person_Module/.env
+    volumes:
+      - ./Person_Module/wallet_oncodb:/root/wallet_oncodb
+    networks:
+      - microservices_network
+
+  doctor_module:
+    build:
+      context: ./Doctor_Module
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./Doctor_Module/.env
+    volumes:
+      - ./Doctor_Module/wallet_oncodb:/root/wallet_oncodb
+    networks:
+      - microservices_network # Assign to the custom network
+
+  auth_module:
+    build:
+      context: ./Auth_Module
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    env_file:
+      - ./Auth_Module/.env
+    volumes:
+      - ./Auth_Module/wallet_oncodb:/root/wallet_oncodb
+    networks:
+      - microservices_network # Assign to the custom network
+  patient_module:
+    build:
+      context: ./Patient_Module
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    env_file:
+      - ./Patient_Module/.env
+    volumes:
+      - ./Patient_Module/wallet_oncodb:/root/wallet_oncodb
+    networks:
+      - microservices_network # Assign to the custom network
+  consultation_module:
+    build:
+      context: ./Consultation_Module
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    env_file:
+      - ./Consultation_Module/.env
+    volumes:
+      - ./Consultation_Module/wallet_oncodb:/root/wallet_oncodb
+    networks:
+      - microservices_network # Assign to the custom network
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - microservices_network
+    depends_on:
+      - person_module
+      - doctor_module
+      - auth_module
+networks:
+  microservices_network: # Define the custom network
+    driver: bridge
